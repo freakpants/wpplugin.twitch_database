@@ -207,8 +207,8 @@ function get_custom_post_type_template($single_template) {
 
     if ($post->post_type == 'twitch_channel' ) {
 		// check if a page template exists in the theme directory
-		if ( file_exists (get_template_directory() . '/twitch_channel/single-twitch_channel.php' ) ){
-			$single_template = get_template_directory() . '/twitch_channel/single-twitch_channel.php';
+		if ( file_exists (get_template_directory() . '/twitch_database/single-twitch_channel.php' ) ){
+			$single_template = get_template_directory() . '/twitch_database/single-twitch_channel.php';
 		} else {
 			// if there is no page template in the theme directory, use our default plugin template
 			$single_template = dirname( __FILE__ ) . '/templates/single-twitch_channel.php';

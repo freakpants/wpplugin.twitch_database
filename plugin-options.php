@@ -1,5 +1,7 @@
 <?php
-/* Options Page for the Twitch Database Plugin */
+/** Options Page for the Twitch Database Plugin 
+ *	@package twitch_database
+ **/
 
 global $option_name;
 $option_name = 'twitch_database_plugin_options';

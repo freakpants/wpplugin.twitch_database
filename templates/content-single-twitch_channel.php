@@ -2,8 +2,8 @@
 /**
  * The Content Template for displaying a singe Twitch Channel
  * 
- * This Template can be overridden in your theme by copying it to yourtheme/twitch_channel/content-single-twitch_channel.php
- * @package twitch_channnel
+ * This Template can be overridden in your theme by copying it to yourtheme/twitch_database/content-single-twitch_channel.php
+ * @package twitch_database
  * 
  */
 ?>

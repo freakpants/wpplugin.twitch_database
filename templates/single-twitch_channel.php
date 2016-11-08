@@ -2,8 +2,8 @@
 /**
  * The Page Template for displaying a singe Twitch Channel
  * 
- * This Template can be overridden in your theme by copying it to yourtheme/twitch_channel/single-twitch_channel.php
- * @package twitch_channnel 
+ * This Template can be overridden in your theme by copying it to yourtheme/twitch_database/single-twitch_channel.php
+ * @package twitch_database 
  *
  */
 
@@ -28,8 +28,8 @@ get_header(); ?>
 		while ( have_posts() ) : the_post();
 
 			// Include the page content template.
-			if ( file_exists (get_template_directory() . '/twitch_channel/content-single-twitch_channel.php' ) ){
-				$content_template = get_template_directory() . '/twitch_channel/content-single-twitch_channel.php';
+			if ( file_exists (get_template_directory() . '/twitch_database/content-single-twitch_channel.php' ) ){
+				$content_template = get_template_directory() . '/twitch_database/content-single-twitch_channel.php';
 			} else {
 				// if there is no page template in the theme directory, use our default plugin template
 				$content_template = twitch_channel_template( '/content-single-twitch_channel.php' );

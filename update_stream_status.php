@@ -1,8 +1,9 @@
 <?php
-
 /*
 ** update.php
-** @description: updates all twitch channels and their online status in our db
+** @description: updates all twitch channels and their online status in our db*
+** @package: twitch_database
+**
 */
 function update_stream_status(){
 	$time_start = microtime(true); 
