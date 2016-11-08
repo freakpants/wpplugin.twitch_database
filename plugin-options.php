@@ -10,7 +10,7 @@ $option_name = 'twitch_database_plugin_options';
 add_action('admin_menu', 'plugin_admin_add_page');
 function plugin_admin_add_page() {
 	// add_options_page( $page_title, $menu_title, $capability , $menu_slug , $function)
-	add_options_page( 'Twitch Database Settings', 'Twitch Database Settings', 'manage_options' , 'plugin' , 'plugin_options_page');
+	add_options_page( 'Twitch Database Settings', 'Twitch Database Settings', 'manage_options' , 'twitch_database_options' , 'plugin_options_page');
 }
 
 // add the admin settings and such
