@@ -8,9 +8,9 @@ function update_stream_status(){
 	$time_start = microtime(true); 
 	// include wp_load so we can access wpdb
 	require_once( explode( "wp-content" , __FILE__ )[0] . "wp-load.php" );
-
+	
 	// retrieve twitch client id from the plugin options in the backend
-	$options = get_option('plugin_options');
+	$options = get_option('twitch_database_plugin_options');
 	$client_id = $options['twitch_client_id'];
 
 	// urls per api call

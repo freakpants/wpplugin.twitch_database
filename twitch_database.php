@@ -32,6 +32,7 @@ function create_post_type() {
     'public' => true,
     'has_archive' => true,
 	));
+	update_option( 'twitch_client_id', 12 );
 }
 add_action( 'init', 'create_taxonomies', 0 );
 function create_taxonomies(){
@@ -176,6 +177,7 @@ add_filter('cron_schedules','my_cron_schedules');
 add_action('cron_event', 'update_stream_status');
 wp_schedule_event(time(), '1min', 'cron_event');
 
+// modify the post query in the backend
 add_action( 'pre_get_posts', 'posts_query' );
 function posts_query( $query ){
 	global $typenow;
@@ -191,10 +193,11 @@ function posts_query( $query ){
 
 // shortcode for outputting a single channel
 function display_twitch_channel( $atts ) {
-    $attributes = shortcode_atts( array(
-        'channel_name' => 'something',
-    ), $atts );
-	var_dump($attributes);
+    $attributes = shortcode_atts( array( 'channel_name' => '' ), $atts );
+	// get the post by slug , so we can use it in the content template
+	$post = get_page_by_path( $attributes['channel_name'] , OBJECT , 'twitch_channel' );
+	// include the content template
+	require( twitch_channel_template( '/content-single-twitch_channel.php' ) );
 }
 add_shortcode( 'twitch_channel', 'display_twitch_channel' );
 
