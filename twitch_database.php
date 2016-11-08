@@ -45,25 +45,24 @@ function create_taxonomies(){
 	);
 }
 
-function get_custom_post_type_template($single_template) {
+function filter_content($content) {
 	global $post;
-    if ($post->post_type == 'twitch_channel') {
-		$single_template = dirname( __FILE__ ) . '/templates/single-twitch_channel.php'; 
-    }
-    return $single_template;
+	if( $post->post_type === 'twitch_channel' ) {
+		require("templates/single-twitch_channel.php");
+	} else {
+		return $content;
+	}
 }
-add_filter( 'single_template', 'get_custom_post_type_template' );
+add_filter( 'the_content', 'filter_content' ); 
 
 add_action( 'save_post_twitch_channel', 'twitch_channel_save', 10 , 3 );
 function twitch_channel_save( $post_id, $post, $update ) {
-    if( $update ){
-		
+    if( $update ){	
 	} else {
 		// if new twitch channel, set meta values to default values
 		add_post_meta($post_id, 'online_status', 'offline', true);
 		add_post_meta($post_id, 'viewers', 0, true);
 	}
-
 }
 
 // add online status to backend list
@@ -82,6 +81,8 @@ function add_online_status( $columns ) {
 	);
 	return $columns;
 }
+
+// output custom columns for the twitch_channel post type
 add_action( 'manage_posts_custom_column' , 'custom_columns', 10, 2 );
 function custom_columns( $column, $post_id ) {
 	switch ( $column ) {
@@ -187,4 +188,36 @@ function posts_query( $query ){
 		}
 	}
 }
+
+// shortcode for outputting a single channel
+function display_twitch_channel( $atts ) {
+    $attributes = shortcode_atts( array(
+        'channel_name' => 'something',
+    ), $atts );
+	var_dump($attributes);
+}
+add_shortcode( 'twitch_channel', 'display_twitch_channel' );
+
+// override the page template for our twitch channel custom post type
+function get_custom_post_type_template($single_template) {
+    global $post;
+
+    if ($post->post_type == 'twitch_channel' ) {
+		// check if a page template exists in the theme directory
+		if ( file_exists (get_template_directory() . '/twitch_channel/single-twitch_channel.php' ) ){
+			$single_template = get_template_directory() . '/twitch_channel/single-twitch_channel.php';
+		} else {
+			// if there is no page template in the theme directory, use our default plugin template
+			$single_template = dirname( __FILE__ ) . '/templates/single-twitch_channel.php';
+		}
+    }
+    return $single_template;
+}
+add_filter( 'single_template', 'get_custom_post_type_template' );
+
+// returns the path of a template relative to the plugin directory (for use in theme templates that override the plugin templates)
+function twitch_channel_template( $template_name ){
+	return dirname( __FILE__ ) . '/templates/' .  $template_name ;
+}
+
 ?>
