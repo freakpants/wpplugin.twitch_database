@@ -7,3 +7,38 @@
 .offline {
 	color:red;
 }
+
+.twitch_channel_widget .online_streams{
+	text-align:center;
+}
+
+.twitch_channel_widget .twitch_channel_item {
+	background-color:#EAEAEA;
+	margin-bottom: 0.9em;
+}
+
+.twitch_channel_widget .twitch_channel_item .twitch_thumbnail{
+	margin-bottom: 0.9em;
+}
+
+.twitch_channel_widget .twitch_channel_item  .channel_title{
+	text-transform: uppercase;
+	font-weight:bold;
+	text-align:center;
+	font-family: Montserrat, "Helvetica Neue", sans-serif;
+}
+
+.twitch_channel_widget .twitch_channel_item  .stream_title, .twitch_channel_widget .twitch_channel_item  .game_title,
+.twitch_channel_widget .twitch_channel_item  .viewers{
+	text-align:center;
+	text-overflow: ellipsis;
+	width:100%;
+	word-wrap: break-word;
+    white-space: nowrap;
+	overflow: hidden;
+	padding-left:10px;
+	padding-right:10px;
+}
+
+	
+

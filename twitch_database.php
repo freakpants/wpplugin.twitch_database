@@ -13,12 +13,18 @@ if ( ! defined( 'ABSPATH' ) ) {
 // include the options panel for the backend
 require( 'plugin-options.php' );
 require( 'update_stream_status.php' );
+require( 'twitch_channel_widget.php' );
+
+add_action( 'widgets_init', function(){
+	register_widget( 'twitch_channel_widget' );
+});
 
 function add_css() {
 	wp_register_style('twitch_style', plugins_url('style.css',__FILE__ ));
 	wp_enqueue_style('twitch_style');
 }
 add_action( 'admin_init','add_css' );
+add_action( 'init','add_css' );
 
 add_action( 'init', 'create_post_type' );
 function create_post_type() {
